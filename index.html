@@ -18,7 +18,7 @@
        <input type="text" id="lianxi" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访时间</font></h2> 
        <h2 style="text-align:center;font-size:8px"><font face="verdana">（不可预约当天时间）</font></h2>
-       <input type="datetime-local" id="myLocalDate" value="2018-09-01T15:00:00" /><br>
+       <input type="datetime-local" id="myLocalDate" value="2018-10-31T15:00:00" min="1899-01-01T15:00:00" max="2000-13-13T15:00:00" /><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2> <input type="text" id="danwei" /><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">职位</font></h2>  
        <input type="text" id="zhi" /><br><br>
@@ -36,7 +36,34 @@
   <script type="text/javascript">
   var APP_ID = 'og4vaNvpAkKo9q3AYwGnflAk-gzGzoHsz';
   var APP_KEY = 'Ej2yeEnqLJl1HcVVutKjkanW';
-
+  var today = new Date();
+  var tomorrow = new Date();
+  var maxdate = new Date();
+  tomorrow.setDate(today.getDate()+1);
+  maxdate.setDate(today.getDate()+30);
+  var dd = tomorrow.getDate();
+  var mm = tomorrow.getMonth()+1; //January is 0!
+  var yyyy = tomorrow.getFullYear();
+  var maxdd = maxdate.getDate();
+  var maxmm = maxdate.getMonth()+1; //January is 0!
+  var maxyyyy = maxdate.getFullYear();
+  if(dd<10){
+        dd='0'+dd
+    } 
+  if(mm<10){
+        mm='0'+mm
+    }
+  if(maxdd<10){
+        dd='0'+dd
+    } 
+  if(maxmm<10){
+        mm='0'+mm
+    }
+  tomorrow = yyyy+'-'+mm+'-'+dd+'T09:00:00';
+  maxdate = maxyyyy+'-'+maxmm+'-'+maxdd+'T16:30:00';
+  document.getElementById("myLocalDate").setAttribute("max", maxdate);
+  document.getElementById("myLocalDate").setAttribute("min", tomorrow);
+  document.getElementById("myLocalDate").setAttribute("value", tomorrow);
   AV.init({
       appId: APP_ID,
       appKey: APP_KEY
