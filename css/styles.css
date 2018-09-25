@@ -5,10 +5,7 @@ body {
 }
 
 div {
-    display: table-cell;
     vertical-align: middle;
-    height: 50px;
-    border: 1px solid red;
 }
 
 #main {
