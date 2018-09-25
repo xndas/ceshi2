@@ -4,9 +4,14 @@
   <title>雄安达实智慧城市展厅</title>
    <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
    <script src="https://cdnjs.cat.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/leancloud-realtime@4.2.0/dist/realtime.browser.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+   <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 </head>
 <body>
   <div>
@@ -17,8 +22,7 @@
        <h2 style="text-align:center;font-size:15px"><font face="verdana">联系人姓名</font></h2>  
        <input type="text" id="lianxi" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访时间</font></h2> 
-       <h2 style="text-align:center;font-size:8px"><font face="verdana">（不可预约当天时间）</font></h2>
-       <input type="datetime-local" id="myLocalDate" value="" min="1899-01-01T15:00:00" max="2018-11-12T15:00:00" /><br>
+       <input type="text" value="" id="datetimepicker"  class="form_datetime" data-date-format="yyyy-mm-dd hh:ii">
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2> <input type="text" id="danwei" /><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">职位</font></h2>  
        <input type="text" id="zhi" /><br><br>
@@ -41,29 +45,16 @@
   var maxdate = new Date();
   tomorrow.setDate(today.getDate()+1);
   maxdate.setDate(today.getDate()+30);
-  var dd = tomorrow.getDate();
-  var mm = tomorrow.getMonth()+1; //January is 0!
-  var yyyy = tomorrow.getFullYear();
-  var maxdd = maxdate.getDate();
-  var maxmm = maxdate.getMonth()+1; //January is 0!
-  var maxyyyy = maxdate.getFullYear();
-  if(dd<10){
-        dd='0'+dd
-    } 
-  if(mm<10){
-        mm='0'+mm
-    }
-  if(maxdd<10){
-        dd='0'+dd
-    } 
-  if(maxmm<10){
-        mm='0'+mm
-    }
-  tomorrow = yyyy+'-'+mm+'-'+dd+'T09:00:00';
-  maxdate = maxyyyy+'-'+maxmm+'-'+maxdd+'T16:30:00';
-  document.getElementById("myLocalDate").setAttribute("max", maxdate);
-  document.getElementById("myLocalDate").setAttribute("min", tomorrow);
-  document.getElementById("myLocalDate").setAttribute("value", tomorrow);
+  tomorrow.setHours(0);
+  maxdate.setHours(0);
+
+  $('#datetimepicker').datetimepicker({
+    startDate: tomorrow,
+    minuteStep: 30,
+    endDate: maxdate,
+    initialDate: tomorrow,
+    language: "zh-CN"
+  });
   
   AV.init({
       appId: APP_ID,
