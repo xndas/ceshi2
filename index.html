@@ -22,8 +22,9 @@
        <h2 style="text-align:center;font-size:15px"><font face="verdana">联系人姓名</font></h2>  
        <input type="text" id="lianxi" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访时间</font></h2> 
-       <input type="text" value="" id="datetimepicker"  class="form_datetime" data-date-format="yyyy-mm-dd hh:ii">
-       <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2> <input type="text" id="danwei" /><br>
+       <input type="text" value="" id="datetimepicker"  class="form_datetime" data-date-format="yyyy-mm-dd hh:ii"><br><br>
+       <h2 style="text-align:center;font-size:15px"><font face="verdana">来访单位</font></h2> 
+       <input type="text" id="danwei" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">职位</font></h2>  
        <input type="text" id="zhi" /><br><br>
        <h2 style="text-align:center;font-size:15px"><font face="verdana">来访总人数</font></h2>  
@@ -74,7 +75,7 @@
         };
   }
   function print(){
-    var z=$("#myLocalDate").val();
+    var z=$("#datetimepicker").val();
     var a=$("#danwei").val();
     var b=$("#zhi").val();
     var c=$("#renshu").val();
@@ -88,7 +89,7 @@
       var Ourguests = AV.Object.extend("Ourguests");
       var ourguests = new Ourguests();
       ourguests.set("1",$("#lianxi").val())
-      ourguests.set("2",$("#myLocalDate").val())
+      ourguests.set("2",$("#datetimepicker").val())
       ourguests.set("3",$("#danwei").val())
       ourguests.set("4",$("#zhi").val())
       ourguests.set("5",$("#renshu").val())
