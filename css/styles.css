@@ -20,7 +20,7 @@ div {
 
 #main h1 {
     margin-top: 0;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #main h2 {
@@ -29,14 +29,4 @@ div {
 
 #main ul {
     padding-left: 20px;
-}
-
-#main .error {
-    border: 1px solid red;
-    background: #FDEFF0;
-    padding: 20px;
-}
-
-#main .success {
-    margin-top: 25px;
 }
